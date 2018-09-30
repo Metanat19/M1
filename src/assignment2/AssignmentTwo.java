@@ -10,14 +10,15 @@ public class AssignmentTwo {
 	
 	public void run() {
 		
-		System.out.println("Hello from assignmentTwo");
-		
-		// Create a variable for the connection string.
-        String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=Demo Database NAV (5-0);integratedSecurity=True";
-
-        try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
-            String SQL = "SELECT TOP 10 * FROM Company";
-            ResultSet rs = stmt.executeQuery(SQL);
+		System.out.println("Hello from assignmentTwo!");
+		try {
+			// Create a variable for the connection string.
+	        String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=Demo Database NAV (5-0);integratedSecurity=True";
+	        Connection con = DriverManager.getConnection(connectionUrl);
+	        Statement stmt = con.createStatement();
+	        
+            String SQL_Query = "SELECT TOP 10 * FROM Company";
+            ResultSet rs = stmt.executeQuery(SQL_Query);
 
             // Iterate through the data in the result set and display it.
             while (rs.next()) {
