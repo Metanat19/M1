@@ -20,10 +20,11 @@ public class AssignmentTwo {
 	public void run() {
 
 		//printIndexes();
-		printTableConstrians();
+		//printTableConstrians();
 		// printColumnNameAndType();// print Name and type
 		try {
 			// printKeys();
+			printAlltablesName();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,8 +61,7 @@ public class AssignmentTwo {
 
 	// 2
 	private void printIndexes() {
-		String tableName = "\"CRONUS Sverige AB$Employee\"";
-		tableName = "sys.indexes";
+		String tableName = "sys.indexes";
 		// Write a query
 		String SQL_Query = "SELECT TOP 5 * FROM " + tableName;
 
@@ -118,10 +118,23 @@ public class AssignmentTwo {
 			e.printStackTrace();
 		}
 	}
+	
+	//4
+	private void printAlltablesName() throws SQLException {
+		DatabaseMetaData meta = dal.getDBMetaData();
+
+		String[] tableTypes = { "TABLE" };
+		try (ResultSet tables = meta.getTables(null, null, "%", tableTypes)) {
+			while (tables.next()) {
+				String tableName = tables.getString("TABLE_NAME");
+				System.out.println("Table: " + tableName);
+			}
+		}
+	}
+	
 	// 5
 	private void printColumnNameAndType() {
 		String tableName = "\"CRONUS Sverige AB$Employee\"";
-		tableName = "\"sys.indexes\"";
 		// Write a query
 		String SQL_Query = "SELECT TOP 5 * FROM " + tableName;
 
