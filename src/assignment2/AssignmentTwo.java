@@ -24,7 +24,7 @@ public class AssignmentTwo {
 		// printColumnNameAndType();// print Name and type
 		try {
 			// printKeys();
-			printAlltablesName();
+			printAlltablesName2();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,7 +119,7 @@ public class AssignmentTwo {
 		}
 	}
 	
-	//4
+	//4,1
 	private void printAlltablesName() throws SQLException {
 		DatabaseMetaData meta = dal.getDBMetaData();
 
@@ -132,6 +132,16 @@ public class AssignmentTwo {
 		}
 	}
 	
+	//4,2
+		private void printAlltablesName2() throws SQLException {
+			String SQL_Query = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES";
+			ResultSet rs = dal.run(SQL_Query);
+			ResultSetMetaData rsmd = dal.getResultSetMetaData(rs);
+			while (rs.next()) {
+				System.out.println(rs.getObject(1));
+			}
+		}
+		
 	// 5
 	private void printColumnNameAndType() {
 		String tableName = "\"CRONUS Sverige AB$Employee\"";
