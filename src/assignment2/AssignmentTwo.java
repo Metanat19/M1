@@ -19,7 +19,8 @@ public class AssignmentTwo {
 
 	public void run() {
 
-		printIndexes();
+		//printIndexes();
+		printTableConstrians();
 		// printColumnNameAndType();// print Name and type
 		try {
 			// printKeys();
@@ -54,30 +55,6 @@ public class AssignmentTwo {
 					}
 				}
 			}
-		}
-	}
-
-	// 5
-	private void printColumnNameAndType() {
-		String tableName = "\"CRONUS Sverige AB$Employee\"";
-		tableName = "\"sys.indexes\"";
-		// Write a query
-		String SQL_Query = "SELECT TOP 5 * FROM " + tableName;
-
-		// Get the MetaData
-		ResultSet rs = dal.run(SQL_Query);
-		ResultSetMetaData rsmd = dal.getResultSetMetaData(rs);
-		// Iterate through the Meta data in the resultSetMetaData and display
-		// ColumnName.
-		try {
-			for (int i = 1; i < rsmd.getColumnCount(); i++) {
-				String colName = rsmd.getColumnName(i);
-				String colType = rsmd.getColumnTypeName(i);
-				System.out.println("\"" + colName + "\" of type " + colType + "\t");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 
@@ -123,4 +100,46 @@ public class AssignmentTwo {
 		}
 
 	}
+
+	//3
+	private void printTableConstrians() {
+
+		String SQL_Query = "SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS";
+		ResultSet rs = dal.run(SQL_Query);
+		ResultSetMetaData rsmd = dal.getResultSetMetaData(rs);
+		try {
+			for (int i = 1; i < rsmd.getColumnCount(); i++) {
+				String colName = rsmd.getColumnName(i);
+
+				System.out.println(colName );
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	// 5
+	private void printColumnNameAndType() {
+		String tableName = "\"CRONUS Sverige AB$Employee\"";
+		tableName = "\"sys.indexes\"";
+		// Write a query
+		String SQL_Query = "SELECT TOP 5 * FROM " + tableName;
+
+		// Get the MetaData
+		ResultSet rs = dal.run(SQL_Query);
+		ResultSetMetaData rsmd = dal.getResultSetMetaData(rs);
+		// Iterate through the Meta data in the resultSetMetaData and display
+		// ColumnName.
+		try {
+			for (int i = 1; i < rsmd.getColumnCount(); i++) {
+				String colName = rsmd.getColumnName(i);
+				String colType = rsmd.getColumnTypeName(i);
+				System.out.println("\"" + colName + "\" of type " + colType + "\t");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }
