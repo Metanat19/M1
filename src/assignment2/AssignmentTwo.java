@@ -21,10 +21,10 @@ public class AssignmentTwo {
 
 		//printIndexes();
 		//printTableConstrians();
-		// printColumnNameAndType();// print Name and type
 		try {
+			printColumnNameAndType2();// print Name and type
 			// printKeys();
-			printAlltablesName2();
+			//printAlltablesName2();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -142,11 +142,11 @@ public class AssignmentTwo {
 			}
 		}
 		
-	// 5
+	// 5,1
 	private void printColumnNameAndType() {
 		String tableName = "\"CRONUS Sverige AB$Employee\"";
 		// Write a query
-		String SQL_Query = "SELECT TOP 5 * FROM " + tableName;
+		String SQL_Query = "SELECT * FROM " + tableName;
 
 		// Get the MetaData
 		ResultSet rs = dal.run(SQL_Query);
@@ -165,4 +165,13 @@ public class AssignmentTwo {
 		}
 	}
 
+	// 5,2
+		private void printColumnNameAndType2() throws SQLException {
+			String SQL_Query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'CRONUS Sverige AB$Employee'";
+			ResultSet rs = dal.run(SQL_Query);
+			ResultSetMetaData rsmd = dal.getResultSetMetaData(rs);
+			while (rs.next()) {
+				System.out.println(rs.getObject(1));
+			}
+		}
 }
